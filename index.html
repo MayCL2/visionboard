@@ -14,8 +14,8 @@
     --text:      #EDEAE3;
     --text-mute: rgba(237,234,227,0.55);
     --text-dim:  rgba(237,234,227,0.30);
-    --accent:    #6B88B5;
-    --accent-soft: rgba(107,136,181,0.16);
+    --accent:    #9E988E;
+    --accent-soft: rgba(158,152,142,0.16);
     --line:      rgba(237,234,227,0.10);
   }
   *,*::before,*::after { box-sizing: border-box; margin: 0; padding: 0; }
@@ -290,7 +290,7 @@
     left: 50%;
     top: 2%; bottom: 2%;
     width: 1px;
-    background: rgba(107,136,181,0.32);
+    background: rgba(158,152,142,0.32);
     transform: translateX(-50%);
     opacity: 0;
     transition: opacity 600ms ease 250ms;
@@ -362,18 +362,18 @@
   .edit-toggle:hover { color: var(--accent); border-color: var(--accent); }
   body.edit-mode .edit-toggle {
     color: var(--accent); border-color: var(--accent);
-    background: rgba(107,136,181,0.14);
+    background: rgba(158,152,142,0.14);
   }
   body.edit-mode [contenteditable="true"] {
-    outline: 1px dashed rgba(107,136,181,0.30);
+    outline: 1px dashed rgba(158,152,142,0.30);
     outline-offset: 6px;
     cursor: text;
   }
-  body.edit-mode [contenteditable="true"]:hover { outline-color: rgba(107,136,181,0.55); }
+  body.edit-mode [contenteditable="true"]:hover { outline-color: rgba(158,152,142,0.55); }
   body.edit-mode [contenteditable="true"]:focus {
     outline-style: solid;
-    outline-color: rgba(107,136,181,0.95);
-    background: rgba(107,136,181,0.05);
+    outline-color: rgba(158,152,142,0.95);
+    background: rgba(158,152,142,0.05);
   }
   .edit-extra {
     position: fixed; right: 28px; bottom: 22px;
@@ -452,7 +452,7 @@
     text-transform: uppercase;
     color: var(--accent);
     padding-bottom: 8px;
-    border-bottom: 1px solid rgba(107,136,181,0.32);
+    border-bottom: 1px solid rgba(158,152,142,0.32);
   }
   .cap-name {
     font-family: "Instrument Serif", Georgia, serif;
@@ -515,7 +515,7 @@
     padding:11px 14px; text-align:center; cursor:pointer;
     transition: border-color 350ms, background 350ms, box-shadow 350ms, opacity 350ms, transform 350ms;
   }
-  .org-node:hover { border-color: rgba(107,136,181,0.55); }
+  .org-node:hover { border-color: rgba(158,152,142,0.55); }
   .org-role {
     font-family:"JetBrains Mono", monospace; font-weight:500;
     font-size:clamp(8px,0.72vw,10px); letter-spacing:0.12em; text-transform:uppercase;
@@ -528,8 +528,8 @@
   .org-chart.has-sel .org-node:not(.sel) { opacity:0.30; }
   .org-node.sel {
     border-color:var(--accent);
-    background: rgba(107,136,181,0.12);
-    box-shadow: 0 0 0 1px var(--accent), 0 10px 34px rgba(107,136,181,0.16);
+    background: rgba(158,152,142,0.12);
+    box-shadow: 0 0 0 1px var(--accent), 0 10px 34px rgba(158,152,142,0.16);
     transform: translateY(-2px);
   }
   /* responsibilities panel — tarjeta flotante pegada a la casilla seleccionada */
@@ -599,11 +599,11 @@
   }
   .brecha-grid::before {
     content: ''; position: absolute; left: -8px; right: -8px; top: 50%;
-    height: 1px; background: rgba(107,136,181,0.22);
+    height: 1px; background: rgba(158,152,142,0.22);
   }
   .brecha-grid::after {
     content: ''; position: absolute; top: -8px; bottom: -8px; left: 50%;
-    width: 1px; background: rgba(107,136,181,0.22);
+    width: 1px; background: rgba(158,152,142,0.22);
   }
   .brecha-quad { position: relative; padding: 6px 0 0; }
   /* Variante 3 columnas (La Ruta con 3 fases) */
@@ -612,7 +612,7 @@
   .brecha-grid.cols-3 .brecha-quad { padding: 6px 52px; }
   .brecha-grid.cols-3 .brecha-quad:first-child { padding-left: 0; }
   .brecha-grid.cols-3 .brecha-quad:last-child { padding-right: 0; }
-  .brecha-grid.cols-3 .brecha-quad + .brecha-quad { border-left: 1px solid rgba(107,136,181,0.22); }
+  .brecha-grid.cols-3 .brecha-quad + .brecha-quad { border-left: 1px solid rgba(158,152,142,0.22); }
   .brecha-grid.cols-3 .brecha-sub { max-width: 100%; }
 
   .brecha-quad-num {
