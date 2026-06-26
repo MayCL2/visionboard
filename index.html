@@ -1,0 +1,1336 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>ConstruLab · Equipo de Finanzas · Ruta</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&amp;family=Manrope:wght@300;400;500;600&amp;family=JetBrains+Mono:wght@400;500&amp;display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg:        #0B0B0D;
+    --bg-2:      #111114;
+    --text:      #EDEAE3;
+    --text-mute: rgba(237,234,227,0.55);
+    --text-dim:  rgba(237,234,227,0.30);
+    --accent:    #6B88B5;
+    --accent-soft: rgba(107,136,181,0.16);
+    --line:      rgba(237,234,227,0.10);
+  }
+  *,*::before,*::after { box-sizing: border-box; margin: 0; padding: 0; }
+  html, body { height: 100%; width: 100%; background: var(--bg); color: var(--text); overflow: hidden; }
+  body {
+    font-family: "Manrope", system-ui, -apple-system, "Segoe UI", sans-serif;
+    font-weight: 400;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  /* Deck */
+  .deck { position: relative; height: 100vh; width: 100vw; }
+  .slide {
+    position: absolute; inset: 0;
+    padding: 7vh 9vw;
+    display: flex; flex-direction: column; justify-content: center;
+    opacity: 0; pointer-events: none;
+    transition: opacity 380ms ease;
+  }
+  .slide.active { opacity: 1; pointer-events: auto; }
+
+  /* Wordmark — ConstruLab logo (transparent BG) */
+  .wordmark-sm-img {
+    position: absolute; top: 7vh; right: 9vw;
+    width: 150px; height: auto;
+    opacity: 0.92;
+  }
+  .wordmark-lg-img {
+    width: clamp(440px, 58vw, 1100px);
+    height: auto;
+    display: block;
+  }
+  .wordmark-sm {
+    font-family: "Instrument Serif", Georgia, serif;
+    font-weight: 400; font-size: 18px;
+    color: var(--text); letter-spacing: -0.01em;
+    position: absolute; top: 7vh; right: 9vw;
+  }
+  .wordmark-lg {
+    font-family: "Instrument Serif", Georgia, serif;
+    font-weight: 300;
+    font-size: clamp(96px, 13vw, 196px);
+    line-height: 0.95; letter-spacing: -0.035em;
+    color: var(--text);
+  }
+
+  /* Eyebrow — slate-blue small-caps mono */
+  .eyebrow {
+    font-family: "JetBrains Mono", monospace;
+    font-weight: 500;
+    font-size: clamp(13px, 1.05vw, 16px);
+    letter-spacing: 0.18em; text-transform: uppercase;
+    color: var(--accent);
+  }
+  .eyebrow-lg {
+    font-family: "JetBrains Mono", monospace;
+    font-weight: 500;
+    font-size: clamp(15px, 1.25vw, 19px);
+    letter-spacing: 0.2em; text-transform: uppercase;
+    color: var(--accent);
+  }
+
+  /* ---------- SLIDE 1: COVER ---------- */
+  .cover { display: flex; flex-direction: column; justify-content: center; align-items: flex-start; height: 100%; }
+  .cover .eyebrow-lg { margin-bottom: 72px; }
+  .cover .tagline-italic {
+    font-family: "Instrument Serif", Georgia, serif;
+    font-style: italic; font-weight: 400;
+    font-size: clamp(32px, 3.8vw, 58px);
+    color: var(--text-mute);
+    margin-top: 32px;
+    line-height: 1.18; letter-spacing: -0.005em;
+    max-width: 1100px;
+  }
+  .cover .divider-accent {
+    width: 80px; height: 1px; background: var(--accent);
+    margin-top: 56px;
+  }
+
+  /* ---------- SLIDE 2: DRAMATIC REVEAL ---------- */
+  .reveal-stage { display: flex; flex-direction: column; justify-content: center; align-items: flex-start; height: 100%; gap: 0; }
+  .reveal-eyebrow, .reveal-line-1, .reveal-line-2 { opacity: 0; transform: translateY(28px); }
+  .slide.run .reveal-eyebrow { animation: reveal-in 700ms cubic-bezier(.2,.7,.3,1) 350ms forwards; }
+  .slide.run .reveal-line-1  { animation: reveal-in 950ms cubic-bezier(.2,.7,.3,1) 1000ms forwards; }
+  .slide.run .reveal-line-2  { animation: reveal-in 950ms cubic-bezier(.2,.7,.3,1) 1700ms forwards; }
+  @keyframes reveal-in { to { opacity: 1; transform: none; } }
+  .reveal-title {
+    font-family: "Instrument Serif", Georgia, serif; font-weight: 300;
+    font-size: clamp(80px, 11.5vw, 168px);
+    line-height: 0.98; letter-spacing: -0.035em;
+  }
+  .reveal-line-1 { margin-top: 56px; }
+  .reveal-line-2 { font-weight: 400; }
+  .reveal-logo-img {
+    display: block;
+    height: clamp(60px, 8.4vw, 124px);
+    width: auto;
+    margin-top: 28px;
+  }
+
+  /* ---------- SLIDE 3: ANIMATED CONSTITUCIÓN ---------- */
+  .const-slide { padding: 7vh 9vw 9vh; }
+  .const-head { margin-bottom: 56px; }
+  .const-grid {
+    display: grid;
+    grid-template-columns: 1.05fr 1fr;
+    gap: 80px;
+    align-items: start;
+  }
+  .const-text {
+    font-size: clamp(22px, 2.4vw, 32px);
+    transform-origin: top left;
+    transition: transform 750ms cubic-bezier(.4,0,.2,1);
+  }
+  .const-slide[data-cur-step="0"] .const-text {
+    transform: scale(1.25);
+  }
+  .const-text p {
+    font-family: "Instrument Serif", Georgia, serif; font-weight: 300;
+    line-height: 1.32; letter-spacing: -0.012em;
+  }
+  .const-text p + p { margin-top: 30px; }
+  .phrase {
+    color: var(--text);
+    transition: color 450ms ease;
+  }
+  .const-slide:not([data-cur-step="0"]) .phrase { color: var(--text-mute); }
+  .const-slide .phrase.active {
+    color: var(--text);
+    box-shadow: inset 0 -2px 0 var(--accent);
+    padding-bottom: 2px;
+  }
+  .exp-stack { position: relative; min-height: 260px; }
+  .exp-panel {
+    position: absolute; inset: 0;
+    opacity: 0; transform: translateY(20px);
+    transition: opacity 600ms ease, transform 600ms ease;
+    pointer-events: none;
+  }
+  .exp-panel.visible { opacity: 1; transform: none; pointer-events: auto; }
+  .exp-eyebrow {
+    font-family: "JetBrains Mono", monospace;
+    font-weight: 500;
+    font-size: clamp(12px, 1vw, 15px);
+    letter-spacing: 0.18em; text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 22px;
+  }
+  .exp-divider { width: 40px; height: 1px; background: var(--accent); margin-bottom: 26px; }
+  .exp-body {
+    font-family: "Manrope", sans-serif;
+    font-weight: 300;
+    font-size: clamp(16px, 1.45vw, 22px);
+    line-height: 1.6;
+    color: var(--text);
+    max-width: 520px;
+  }
+  .exp-body em {
+    font-family: "Instrument Serif", Georgia, serif;
+    font-style: italic; font-weight: 500;
+  }
+  .exp-body strong { font-weight: 500; color: var(--text); }
+
+  /* ---------- SLIDE: EQUIPO + RESPONSABILIDADES ---------- */
+  .valores-slide { padding: 7vh 9vw 7vh; display: flex; flex-direction: column; justify-content: center; }
+  .valores-head {
+    width: calc(50% - 48px);
+    margin-bottom: 40px;
+    transform: translateX(calc(50% + 48px));
+    transition: transform 750ms cubic-bezier(.4,0,.2,1);
+  }
+  .valores-slide:not([data-cur-step="0"]) .valores-head {
+    transform: translateX(0);
+  }
+  .valores-title {
+    font-family: "Instrument Serif", Georgia, serif;
+    font-weight: 400;
+    font-size: clamp(38px, 4.8vw, 64px);
+    line-height: 1.05; letter-spacing: -0.02em;
+    color: var(--text);
+    margin-top: 14px;
+    white-space: nowrap;
+  }
+  .valores-head { overflow: visible; }
+  .valores-stage {
+    position: relative;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 96px;
+    align-items: start;
+  }
+  .valores-content {
+    grid-column: 1;
+    transform: translateX(calc(50% + 48px));
+    transition: transform 750ms cubic-bezier(.4,0,.2,1);
+  }
+  .valores-slide:not([data-cur-step="0"]) .valores-content {
+    transform: translateX(0);
+  }
+  .mandatos-content {
+    opacity: 0;
+    transform: translateY(8px);
+    transition: opacity 600ms ease 250ms, transform 600ms ease 250ms;
+  }
+  .valores-slide:not([data-cur-step="0"]) .mandatos-content {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  .valores-list-eyebrow {
+    font-family: "JetBrains Mono", monospace;
+    font-weight: 500;
+    font-size: clamp(11px, 0.95vw, 13px);
+    letter-spacing: 0.18em; text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 28px;
+  }
+  .valor-item { margin-bottom: 28px; }
+  .valor-item:last-child { margin-bottom: 0; }
+  .valor-name {
+    font-family: "Instrument Serif", Georgia, serif;
+    font-weight: 400;
+    font-size: clamp(22px, 2.3vw, 32px);
+    line-height: 1.2; letter-spacing: -0.012em;
+    color: var(--text);
+    margin-bottom: 10px;
+  }
+  .valor-body {
+    font-family: "Manrope", sans-serif;
+    font-weight: 300;
+    font-size: clamp(13px, 1.05vw, 16px);
+    line-height: 1.55;
+    color: var(--text-mute);
+  }
+  .valores-title-extra { display: none; }
+  .valores-slide:not([data-cur-step="0"]) .valores-title-extra { display: inline; }
+  .mandatos-eyebrow {
+    font-family: "JetBrains Mono", monospace;
+    font-weight: 500;
+    font-size: clamp(11px, 0.95vw, 13px);
+    letter-spacing: 0.18em; text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 28px;
+  }
+  .mandato-item { margin-bottom: 28px; }
+  .mandato-item:last-child { margin-bottom: 0; }
+  .mandato-name {
+    font-family: "Instrument Serif", Georgia, serif;
+    font-weight: 400;
+    font-size: clamp(22px, 2.3vw, 32px);
+    line-height: 1.2; letter-spacing: -0.012em;
+    color: var(--text);
+    margin-bottom: 10px;
+  }
+  .mandato-en {
+    font-style: italic;
+    color: var(--text-mute);
+    font-size: 0.6em;
+    letter-spacing: 0.04em;
+    margin-left: 8px;
+    vertical-align: 0.22em;
+  }
+  .mandato-body {
+    font-family: "Manrope", sans-serif;
+    font-weight: 300;
+    font-size: clamp(13px, 1.05vw, 16px);
+    line-height: 1.55;
+    color: var(--text-mute);
+  }
+  .valores-vert-divider {
+    position: absolute;
+    left: 50%;
+    top: 2%; bottom: 2%;
+    width: 1px;
+    background: rgba(107,136,181,0.32);
+    transform: translateX(-50%);
+    opacity: 0;
+    transition: opacity 600ms ease 250ms;
+  }
+  .valores-slide:not([data-cur-step="0"]) .valores-vert-divider { opacity: 1; }
+
+  /* ---------- SLIDE: CLOSING ---------- */
+  .closing-stage { display: flex; flex-direction: column; justify-content: center; align-items: flex-start; height: 100%; }
+  .closing-title {
+    font-family: "Instrument Serif", Georgia, serif; font-weight: 300;
+    font-size: clamp(64px, 9vw, 132px);
+    line-height: 1.0; letter-spacing: -0.03em;
+  }
+  .closing-headline {
+    font-family: "Instrument Serif", Georgia, serif; font-weight: 300;
+    font-size: clamp(36px, 5vw, 78px);
+    line-height: 0.98; letter-spacing: -0.035em;
+    color: var(--text);
+  }
+  .closing-logo-img {
+    display: block;
+    height: clamp(56px, 7.6vw, 112px);
+    width: auto;
+    margin-top: 22px;
+  }
+  .closing-tag {
+    font-family: "Instrument Serif", Georgia, serif;
+    font-style: italic; font-weight: 400;
+    font-size: clamp(26px, 2.8vw, 40px);
+    color: var(--text-mute);
+    margin-top: 28px;
+  }
+  .closing-tag u { color: var(--text); text-decoration-color: var(--text); }
+
+  /* Footer */
+  .page-no {
+    position: fixed; right: 28px; bottom: 22px;
+    font-family: "JetBrains Mono", monospace;
+    font-size: 12px; letter-spacing: 0.18em;
+    color: var(--text-dim);
+  }
+  .hint {
+    position: fixed; left: 28px; bottom: 22px;
+    font-family: "JetBrains Mono", monospace;
+    font-size: 11px; letter-spacing: 0.18em;
+    color: var(--text-dim);
+    opacity: 0.65;
+    transition: opacity 350ms ease;
+  }
+  .hint.hidden { opacity: 0; pointer-events: none; }
+
+  /* === EDIT MODE === */
+  .edit-toggle {
+    position: fixed; left: 50%; bottom: 22px; transform: translateX(-50%);
+    font-family: "JetBrains Mono", monospace;
+    font-size: 11px; font-weight: 500;
+    letter-spacing: 0.18em; text-transform: uppercase;
+    color: var(--text-mute);
+    background: rgba(17,17,20,0.92);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    border: 1px solid var(--line);
+    border-radius: 999px;
+    padding: 8px 18px;
+    cursor: pointer;
+    z-index: 200;
+    transition: color 200ms, border-color 200ms, background 200ms;
+  }
+  .edit-toggle:hover { color: var(--accent); border-color: var(--accent); }
+  body.edit-mode .edit-toggle {
+    color: var(--accent); border-color: var(--accent);
+    background: rgba(107,136,181,0.14);
+  }
+  body.edit-mode [contenteditable="true"] {
+    outline: 1px dashed rgba(107,136,181,0.30);
+    outline-offset: 6px;
+    cursor: text;
+  }
+  body.edit-mode [contenteditable="true"]:hover { outline-color: rgba(107,136,181,0.55); }
+  body.edit-mode [contenteditable="true"]:focus {
+    outline-style: solid;
+    outline-color: rgba(107,136,181,0.95);
+    background: rgba(107,136,181,0.05);
+  }
+  .edit-extra {
+    position: fixed; right: 28px; bottom: 22px;
+    font-family: "JetBrains Mono", monospace;
+    font-size: 10px; letter-spacing: 0.15em; text-transform: uppercase;
+    color: var(--text-dim);
+    display: none; gap: 10px; align-items: center;
+    z-index: 200;
+  }
+  body.edit-mode .edit-extra { display: flex; }
+  body.edit-mode .page-no { display: none; }
+  .edit-extra a {
+    color: var(--text-mute); text-decoration: none;
+    border: 1px solid var(--line); padding: 5px 12px; border-radius: 999px;
+    cursor: pointer; background: rgba(17,17,20,0.85);
+  }
+  .edit-extra a:hover { color: var(--accent); border-color: var(--accent); }
+
+  /* Normaliza el tamaño de texto pegado/editado: todo hereda el tamaño base
+     del contenedor (uniforme y pequeño); conserva cursiva/negrita/serif. */
+  .exp-body *, .exp-bullets *,
+  .brecha-main *, .brecha-sub *,
+  .valor-body *, .mandato-body *,
+  .cap-name *, .cap-hoy *, .cap-meta *,
+  .gap-intro *, .tagline-italic *, .closing-tag * {
+    font-size: inherit !important;
+    line-height: inherit !important;
+  }
+
+  /* === EXPLANATION BODY === */
+  .exp-body > p { margin: 0; }
+  .exp-body p + p { margin-top: 30px; }
+  .exp-body-compact {
+    font-size: clamp(14px, 1.25vw, 18px);
+    line-height: 1.55;
+  }
+  .exp-bullets { list-style: none; padding: 0; margin: 28px 0 0; }
+  .exp-bullets li {
+    position: relative; padding-left: 22px; margin-top: 16px; line-height: 1.55;
+  }
+  .exp-bullets li:first-child { margin-top: 0; }
+  .exp-bullets li::before {
+    content: "•"; position: absolute; left: 2px; top: -0.04em;
+    color: var(--accent); font-size: 1.35em; line-height: 1;
+  }
+
+  /* === CAPABILITIES SLIDE (Hoy vs Meta Institucional) === */
+  .gap-slide { padding: 7vh 9vw 7vh; display:flex; flex-direction:column; justify-content:center; }
+  .gap-head { margin-bottom: 34px; }
+  .gap-eyebrow {
+    font-family: "JetBrains Mono", monospace;
+    font-weight: 500;
+    font-size: clamp(15px, 1.25vw, 19px);
+    letter-spacing: 0.2em; text-transform: uppercase;
+    color: var(--accent);
+  }
+  .gap-intro {
+    font-family: "Instrument Serif", Georgia, serif;
+    font-weight: 400;
+    font-size: clamp(22px, 2.4vw, 34px);
+    line-height: 1.22; letter-spacing: -0.012em;
+    color: var(--text); margin-top: 16px; max-width: 1000px;
+  }
+  .gap-table {
+    display: grid;
+    grid-template-columns: minmax(190px, 280px) minmax(0, 1fr) minmax(0, 1fr);
+    column-gap: 48px;
+    row-gap: 18px;
+    align-items: start;
+  }
+  .gap-col-h {
+    font-family: "JetBrains Mono", monospace;
+    font-weight: 500;
+    font-size: clamp(10px, 0.85vw, 12px);
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--accent);
+    padding-bottom: 8px;
+    border-bottom: 1px solid rgba(107,136,181,0.32);
+  }
+  .cap-name {
+    font-family: "Instrument Serif", Georgia, serif;
+    font-weight: 400;
+    font-size: clamp(16px, 1.45vw, 22px);
+    line-height: 1.2;
+    letter-spacing: -0.005em;
+    color: var(--text);
+  }
+  .cap-num {
+    display: inline-block; margin-right: 8px; color: var(--accent);
+    font-family: "JetBrains Mono", monospace;
+    font-size: 0.55em; letter-spacing: 0.12em;
+    vertical-align: 0.30em; font-weight: 500;
+  }
+  .cap-hoy, .cap-meta {
+    font-family: "Manrope", sans-serif;
+    font-weight: 300;
+    font-size: clamp(12px, 1.05vw, 15px);
+    line-height: 1.5;
+  }
+  .cap-hoy  { color: var(--text-mute); }
+  .cap-meta { color: var(--text); }
+
+  /* === ORGANIGRAMA SLIDE === */
+  .org-slide { padding: 5vh 6vw; display:flex; flex-direction:column; justify-content:center; }
+  .org-head { margin-bottom: 2.4vh; }
+  .org-title {
+    font-family:"Instrument Serif", Georgia, serif; font-weight:400;
+    font-size:clamp(32px,4.2vw,58px); line-height:1.05; letter-spacing:-0.02em;
+    color:var(--text); margin-top:12px;
+  }
+  .org-chart { display:flex; flex-direction:column; align-items:center; width:100%; }
+  .org-top { display:flex; justify-content:center; }
+  .org-trunk { width:1px; height:24px; background:var(--line); }
+  .org-mid {
+    position:relative; display:flex; justify-content:center;
+    gap: 24px; padding-top:24px; width:100%;
+  }
+  .org-bus { display:none; }
+  .org-branch {
+    flex:1 1 0; min-width:0;
+    display:flex; flex-direction:column; align-items:center; position:relative;
+  }
+  /* stub vertical desde el bus hasta cada casilla */
+  .org-branch::before {
+    content:''; position:absolute; top:-24px; left:50%; width:1px; height:24px; background:var(--line);
+  }
+  /* bus horizontal: cada rama extiende su segmento 12px dentro del gap para unirse con la vecina */
+  .org-branch::after {
+    content:''; position:absolute; top:-24px; left:-12px; right:-12px; height:1px; background:var(--line);
+  }
+  .org-branch:first-child::after { left:50%; right:-12px; }
+  .org-branch:last-child::after  { left:-12px; right:50%; }
+  .org-childline { width:1px; height:20px; background:var(--line); }
+  .org-node {
+    width:100%; max-width:230px;
+    border:1px solid var(--line); border-radius:10px;
+    background: var(--bg-2);
+    padding:11px 14px; text-align:center; cursor:pointer;
+    transition: border-color 350ms, background 350ms, box-shadow 350ms, opacity 350ms, transform 350ms;
+  }
+  .org-node:hover { border-color: rgba(107,136,181,0.55); }
+  .org-role {
+    font-family:"JetBrains Mono", monospace; font-weight:500;
+    font-size:clamp(8px,0.72vw,10px); letter-spacing:0.12em; text-transform:uppercase;
+    color:var(--text-mute); margin-bottom:6px;
+  }
+  .org-name {
+    font-family:"Instrument Serif", Georgia, serif; font-weight:400;
+    font-size:clamp(14px,1.3vw,20px); line-height:1.15; color:var(--text);
+  }
+  .org-chart.has-sel .org-node:not(.sel) { opacity:0.30; }
+  .org-node.sel {
+    border-color:var(--accent);
+    background: rgba(107,136,181,0.12);
+    box-shadow: 0 0 0 1px var(--accent), 0 10px 34px rgba(107,136,181,0.16);
+    transform: translateY(-2px);
+  }
+  /* responsibilities panel — tarjeta flotante pegada a la casilla seleccionada */
+  .org-resp-stack { position:static; }
+  .org-resp {
+    position:absolute; left:0; top:0;
+    width: min(420px, 38vw);
+    background: rgba(11,11,13,0.93);
+    -webkit-backdrop-filter: blur(12px);
+    backdrop-filter: blur(12px);
+    border:1px solid rgba(237,234,227,0.16);
+    border-radius:14px;
+    padding: 24px 28px;
+    box-shadow: 0 24px 70px rgba(0,0,0,0.6);
+    opacity:0; pointer-events:none;
+    transition: opacity 280ms ease;
+    z-index:30;
+  }
+  .org-resp.visible { opacity:1; pointer-events:auto; }
+  .org-resp-role {
+    font-family:"JetBrains Mono", monospace; font-weight:500;
+    font-size:clamp(11px,0.95vw,13px); letter-spacing:0.18em; text-transform:uppercase;
+    color:var(--accent); margin-bottom:10px;
+  }
+  .org-resp-name {
+    font-family:"Instrument Serif", Georgia, serif; font-weight:400;
+    font-size:clamp(24px,2.5vw,36px); line-height:1.1; letter-spacing:-0.012em;
+    color:var(--text); margin-bottom:20px;
+  }
+  .org-resp-list { list-style:none; padding:0; margin:0; }
+  .org-resp-list li {
+    position:relative; padding-left:20px; margin-bottom:11px;
+    font-family:"Manrope", sans-serif; font-weight:300;
+    font-size:clamp(13px,1.05vw,16px); line-height:1.5; color:var(--text-mute);
+  }
+  .org-resp-list li::before {
+    content:'•'; position:absolute; left:2px; top:-0.02em;
+    color:var(--accent); font-size:1.2em; line-height:1;
+  }
+  .org-hint-panel {
+    font-family:"Instrument Serif", Georgia, serif; font-style:italic;
+    font-size:clamp(18px,1.9vw,26px); color:var(--text-mute);
+  }
+
+  /* === BRECHA / 4-QUADRANT (reportes + ruta) === */
+  .brecha-slide { padding: 9vh 9vw 7vh; display: flex; flex-direction: column; justify-content: flex-start; }
+  .brecha-head { margin-bottom: 56px; }
+  .brecha-title {
+    font-family: "JetBrains Mono", monospace;
+    font-weight: 500;
+    font-size: clamp(13px, 1.15vw, 16px);
+    letter-spacing: 0.18em; text-transform: uppercase;
+    color: var(--accent); margin-top: 0;
+  }
+  .brecha-intro {
+    font-family: "Instrument Serif", Georgia, serif;
+    font-weight: 400;
+    font-size: clamp(26px, 3vw, 42px);
+    line-height: 1.22; letter-spacing: -0.012em;
+    color: var(--text); margin-top: 22px; max-width: 1120px;
+  }
+  .brecha-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 64px 80px;
+    position: relative;
+  }
+  .brecha-grid::before {
+    content: ''; position: absolute; left: -8px; right: -8px; top: 50%;
+    height: 1px; background: rgba(107,136,181,0.22);
+  }
+  .brecha-grid::after {
+    content: ''; position: absolute; top: -8px; bottom: -8px; left: 50%;
+    width: 1px; background: rgba(107,136,181,0.22);
+  }
+  .brecha-quad { position: relative; padding: 6px 0 0; }
+  /* Variante 3 columnas (La Ruta con 3 fases) */
+  .brecha-grid.cols-3 { grid-template-columns: 1fr 1fr 1fr; gap: 0; }
+  .brecha-grid.cols-3::before, .brecha-grid.cols-3::after { display: none; }
+  .brecha-grid.cols-3 .brecha-quad { padding: 6px 52px; }
+  .brecha-grid.cols-3 .brecha-quad:first-child { padding-left: 0; }
+  .brecha-grid.cols-3 .brecha-quad:last-child { padding-right: 0; }
+  .brecha-grid.cols-3 .brecha-quad + .brecha-quad { border-left: 1px solid rgba(107,136,181,0.22); }
+  .brecha-grid.cols-3 .brecha-sub { max-width: 100%; }
+
+  .brecha-quad-num {
+    font-family: "Instrument Serif", Georgia, serif;
+    font-weight: 400;
+    font-size: clamp(30px, 3.2vw, 50px);
+    line-height: 0.95; color: var(--accent);
+    margin-bottom: 12px; display: block; letter-spacing: -0.02em;
+  }
+  .brecha-quad-eyebrow {
+    font-family: "JetBrains Mono", monospace;
+    font-weight: 500;
+    font-size: clamp(11px, 0.95vw, 13px);
+    letter-spacing: 0.18em; text-transform: uppercase;
+    color: var(--accent); margin-bottom: 12px;
+  }
+  .brecha-divider { width: 40px; height: 1px; background: var(--accent); margin-bottom: 22px; }
+  .brecha-main {
+    font-family: "Instrument Serif", Georgia, serif;
+    font-weight: 400;
+    font-size: clamp(20px, 2.1vw, 28px);
+    line-height: 1.25; letter-spacing: -0.01em;
+    color: var(--text); margin-bottom: 14px;
+  }
+  .brecha-sub {
+    font-family: "Manrope", sans-serif;
+    font-weight: 300;
+    font-size: clamp(13px, 1.1vw, 16px);
+    line-height: 1.55; color: var(--text-mute); max-width: 480px;
+  }
+</style>
+</head>
+<body>
+<div class="deck" id="deck">
+
+  <!-- ============== SLIDE 1: COVER ============== -->
+  <section class="slide">
+    <div class="cover">
+      <div class="eyebrow-lg">Equipo de Finanzas · Ruta 2026 – 2027</div>
+      <img class="wordmark-lg-img" src="assets/construlab-logo.png" alt="ConstruLab">
+      <div class="tagline-italic">Información financiera clara, oportuna y confiable para maximizar la rentabilidad del negocio.</div>
+      <div class="divider-accent"></div>
+    </div>
+  </section>
+
+  <!-- ============== SLIDE 2: NUESTRA CONSTITUCIÓN (ANIMADA) ============== -->
+  <section class="slide const-slide" data-steps="5" data-cur-step="0">
+    <img class="wordmark-sm-img" src="assets/construlab-logo.png" alt="ConstruLab">
+    <div class="const-head">
+      <div class="eyebrow-lg">La Constitución de Finanzas:</div>
+    </div>
+    <div class="const-grid">
+      <!-- LEFT: full statement, each sub-phrase addressable -->
+      <div class="const-text">
+        <p>
+          <span class="phrase" data-step="1">Dar visibilidad -clara, precisa y confiable- de la salud financiera del negocio al CEO.</span>
+        </p>
+        <p>
+          <span class="phrase" data-step="2">Lo hacemos capturando información clave de cada área de la empresa  ,</span> <span class="phrase" data-step="3">y aplicando inteligencia y automatización para producir más rápido y con menos error.</span>
+        </p>
+        <p>
+          <span class="phrase" data-step="4">Nuestra meta es institucionalizar la función financiera: procesos, controles y reportes,</span> <span class="phrase" data-step="5">y lograr el grado formalidad que facilite el acceso a capital de terceros.</span>
+        </p>
+      </div>
+
+      <!-- RIGHT: stacked explanation panels, one per step -->
+      <div class="exp-stack">
+
+        <div class="exp-panel" data-step="1">
+          <div class="exp-eyebrow">01 · Qué hacemos:</div>
+          <div class="exp-divider"></div>
+          <div class="exp-body"><p>Producir y presentar información a Jose para que peuda tomar <span style="font-size: clamp(16px, 1.45vw, 22px);">decisiones más rápidas, con menos riesgo y con la confianza de que</span><span style="font-size: clamp(16px, 1.45vw, 22px);"> </span><em style="font-size: clamp(16px, 1.45vw, 22px);">los números hacen sentido con el negocio</em><span style="font-size: clamp(16px, 1.45vw, 22px);">. Esto es:</span></p><ul class="exp-bullets" style="font-size: 15.125px;"><li style="margin: 16px 0px 0px;"><span style="font-size: 17.545px;">RPG: Ganancias y variación de ganancia bruta de proyectos de construcción.</span></li><li><span style="font-size: 17.545px;">P&amp;L: Rentabilidad por línea de negocio y retabilidad del negocio, real y proyectada.</span></li><li><span style="font-size: 17.545px;">BS: Estado de situación patrimonial del negocio a la fecha de corte.</span></li><li><span style="font-size: clamp(16px, 1.45vw, 22px);">CF: Cuánto cash tenemos en bancos y cómo convertiremos en cash la ganancia.</span></li><li><span style="font-size: clamp(16px, 1.45vw, 22px);">Deuda: cuánto acceso a capital tenemos y su costo</span></li></ul>
+            <p><br></p>
+          </div>
+        </div>
+
+        <div class="exp-panel" data-step="2">
+          <div class="exp-eyebrow">02 · Cómo lo hacemos:</div>
+          <div class="exp-divider"></div>
+          <div class="exp-body"><p>No reportamos un excel, capturamos la información del negocio: qué pasó, qué está pasando y qué pronosticamos que pasará.</p><p>Los reportes deben narrar lo que está pasando en la realidad operativa del negocio y cómo eso afecta la rentabilidad de la empresa.</p>
+          </div>
+        </div>
+
+        <div class="exp-panel" data-step="3">
+          <div class="exp-eyebrow">03 · Cómo lo hacemos:</div>
+          <div class="exp-divider"></div>
+          <div class="exp-body"><p>Las preguntas recurrentes son: Cómo podemos hacerlo mejor? cómo podemos hacelor más rápido?</p><p>Buscando respuesta a esas preguntas integramos Apps, APIs, Ai y mejora contínua de los procesos para  automatizar y lograr hacer más, mejor y más rápido el clásico trabajo operativo necesario para la captura, organización de data y emisión de reportes. </p>
+          </div>
+        </div>
+
+        <div class="exp-panel" data-step="4">
+          <div class="exp-eyebrow">04 · La meta: institucionalizar la DAF</div>
+          <div class="exp-divider"></div>
+          <div class="exp-body"><p>Grado institucional en finanzas significa:</p><ul class="exp-bullets"><li>Definir, formalizar y automatizar los procesos para captura de la información clave de las diferentes áreas de negocio.</li><li>Formalizar y automatizar la emisión de los reportes financieros. Es decir, emitirlos de la misma manera, con lso mismos estandares, con la misma calidad.</li>
+              <li>Presentar recurrentemente (en una misma frecuencia), a tiempo y por un único medio, la información financiera  a Jose.</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="exp-panel" data-step="5">
+          <div class="exp-eyebrow">05 · Nuestra contribución</div>
+          <div class="exp-divider"></div>
+          <div class="exp-body"><p>Cuando Finanzas opera a grado institucional, debe poder proveer:</p>
+            <ul class="exp-bullets">
+              <li><strong>Al CEO</strong>, la data financiera de forma recurrente, y confianza en la data.</li>
+              <li><strong>A los socios actuales</strong>, información de cómo está el retorno de su inversión en ConstruLab y las proyecciones de crecimiento del negocio.</li>
+              <li><strong>Al mercado/inversionistas</strong>, Estados Financieros que expresen la solidez y formalidad de la empresa, facilitando el acceso a capital de terceros.</li>
+            </ul>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ============== SLIDE 4: CAPABILITIES — HOY vs META ============== -->
+  <section class="slide gap-slide">
+    <img class="wordmark-sm-img" src="assets/construlab-logo.png" alt="ConstruLab">
+    <div class="gap-head">
+      <div class="gap-eyebrow">CAPABILITIES</div>
+      <div class="gap-intro">Capacidades que debemos tener/desarrollar para lograr grado institucional en finanzas</div>
+    </div>
+    <div class="gap-table">
+      <div class="gap-col-h">CapaBILITY</div>
+      <div class="gap-col-h">Herramienta</div>
+      <div class="gap-col-h">Propósito</div>
+
+      <div class="cap-name"><span class="cap-num">01</span>Contabilidad</div>
+      <div class="cap-hoy">Registros contables.</div>
+      <div class="cap-meta">Estados Financieros (EF).</div>
+
+      <div class="cap-name"><span class="cap-num">02</span>Tesorería</div>
+      <div class="cap-hoy">Flujo de caja.</div>
+      <div class="cap-meta">No quedarnos sin cash.</div>
+
+      <div class="cap-name"><span class="cap-num">03</span>Finanzas</div>
+      <div class="cap-hoy">EF + Modelos financieros / Análisis.</div>
+      <div class="cap-meta">Rentabilidad / Crear riqueza.</div>
+
+      <div class="cap-name"><span class="cap-num">04</span>Fiscal</div>
+      <div class="cap-hoy">Cuadros de impuestos.</div>
+      <div class="cap-meta">Ahorrar impuestos con bajo riesgo.</div>
+
+      <div class="cap-name"><span class="cap-num">05</span>Control</div>
+      <div class="cap-hoy">RPG.</div>
+      <div class="cap-meta">Cuidar ganancias de proyectos.</div>
+
+      <div class="cap-name"><span class="cap-num">06</span>Relación bancos e inversionistas</div>
+      <div class="cap-hoy">Relaciones con bancos/ inversionistas. Exposición.</div>
+      <div class="cap-meta">Expandir acceso a capital.</div>
+
+      <div class="cap-name"><span class="cap-num">07</span>Administración</div>
+      <div class="cap-hoy">Maya.</div>
+      <div class="cap-meta">Orden, limpieza y servicios internos.</div>
+
+      <div class="cap-name"><span class="cap-num">08</span>RRHH</div>
+      <div class="cap-hoy">Planilla, CSS, Contratos laborales.</div>
+      <div class="cap-meta">Lo necesario para cumplir con la ley laboral.</div>
+
+      <div class="cap-name"><span class="cap-num">09</span>Legal / Regulatorio</div>
+      <div class="cap-hoy">Manejar marco regulatorio actual </div>
+      <div class="cap-meta">Cumplir las leyes a las que ya estamos sometidos</div>
+    </div>
+  </section>
+
+  <!-- ============== SLIDE 5: ORGANIGRAMA (INTERACTIVO) ============== -->
+  <section class="slide org-slide" data-steps="8" data-cur-step="0">
+    <img class="wordmark-sm-img" src="assets/construlab-logo.png" alt="ConstruLab">
+    <div class="org-head">
+      <div class="gap-eyebrow">Dirección de Administración y Finanzas · Grupo Construlab</div>
+      <div class="org-title">Organigrama</div>
+    </div>
+
+    <div class="org-chart">
+      <div class="org-top">
+        <div class="org-node" data-step="1">
+          <div class="org-role">CFO</div>
+          <div class="org-name">Mayra Alejandra Ortiz</div>
+        </div>
+      </div>
+      <div class="org-trunk"></div>
+      <div class="org-mid">
+
+        <div class="org-branch">
+          <div class="org-node" data-step="2">
+            <div class="org-role">Tesorero</div>
+            <div class="org-name">Mayra Esther Santos</div>
+          </div>
+          <div class="org-childline"></div>
+          <div class="org-node" data-step="3">
+            <div class="org-role">Asistente de Tesorería</div>
+            <div class="org-name">Amarilys Pineda Ramos</div>
+          </div>
+        </div>
+
+        <div class="org-branch">
+          <div class="org-node" data-step="4">
+            <div class="org-role">Contador</div>
+            <div class="org-name">Lilibeth De La Lastra</div>
+          </div>
+          <div class="org-childline"></div>
+          <div class="org-node" data-step="5">
+            <div class="org-role">Analista Contable</div>
+            <div class="org-name">Betzaida Itzel Muñoz</div>
+          </div>
+        </div>
+
+        <div class="org-branch">
+          <div class="org-node" data-step="6">
+            <div class="org-role">Analista Financiero</div>
+            <div class="org-name">Darío Blanquicet</div>
+          </div>
+        </div>
+
+        <div class="org-branch">
+          <div class="org-node" data-step="7">
+            <div class="org-role">Control Financiero</div>
+            <div class="org-name">Eyda Gómez</div>
+          </div>
+        </div>
+
+        <div class="org-branch">
+          <div class="org-node" data-step="8">
+            <div class="org-role">Administrador</div>
+            <div class="org-name">Liliana Vivar</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="org-resp-stack">
+
+      <div class="org-resp" data-step="1">
+        <div class="org-resp-role">CFO</div>
+        <div class="org-resp-name">Mayra Alejandra Ortiz</div>
+        <ul class="org-resp-list">
+          <li class="org-resp-li"><strong>A 12 meses:</strong> Dar grado institucional a la DAF.</li>
+          <li class="org-resp-li"><strong>A +12 meses:</strong> Manejar el modelo financiero de la empresa (cómo hacemos plata) y participar en las decisiones de Capital Allocation.</li>
+          <li class="org-resp-li">Lograr que las áreas productivas hagan el trabajo de forma rentable.</li>
+          <li class="org-resp-li">Cuidar la ganancia de los proyectos y la rentabilidad de la empresa.</li>
+        </ul>
+      </div>
+
+      <div class="org-resp" data-step="2">
+        <div class="org-resp-role">Tesorero</div>
+        <div class="org-resp-name">Mayra Esther Santos</div>
+        <ul class="org-resp-list">
+          <li class="org-resp-li"><strong>Responsabilidad:</strong> Que no nos quedemos sin cash.</li>
+          <li class="org-resp-li">Emitir el reporte de Flujo de Caja (FC).</li>
+          <li class="org-resp-li">Cobrar y conciliar las CxC con los clientes.</li>
+          <li class="org-resp-li">Ejecutar la estrategia de cobros y pagos de deuda (LC).</li>
+          <li class="org-resp-li">Liderar la priorización semanal de los pagos.</li>
+          <li class="org-resp-li">Control de CxP a proveedores: no pagar antes de tiempo, pero no dañar las relaciones por atraso crítico en pagos.</li>
+        </ul>
+      </div>
+
+      <div class="org-resp" data-step="3">
+        <div class="org-resp-role">Asistente de Tesorería</div>
+        <div class="org-resp-name">Amarilys Pineda Ramos</div>
+        <ul class="org-resp-list">
+          <li class="org-resp-li">Revisar documentación y preaprobar pagos en MAYA.</li>
+          <li class="org-resp-li">Registrar los pagos aprobados en DAVE.</li>
+          <li class="org-resp-li">Emitir reportes de consumo de TDC y de saldo bancario.</li>
+          <li class="org-resp-li">Emisión, gestión y archivo de documentos para solicitudes bancarias (LC, cuentas, etc.).</li>
+          <li class="org-resp-li">Asistir al Tesorero en las tareas necesarias para el cumplimiento de las metas del área.</li>
+        </ul>
+      </div>
+
+      <div class="org-resp" data-step="4">
+        <div class="org-resp-role">Contador</div>
+        <div class="org-resp-name">Lilibeth De La Lastra</div>
+        <ul class="org-resp-list">
+          <li class="org-resp-li"><strong>Responsabilidad:</strong> Emitir buenos EEFF (estados financieros) mensuales.</li>
+          <li class="org-resp-li">Liderar el cierre contable mensual.</li>
+          <li class="org-resp-li">Captura, revisión y análisis de registros contables.</li>
+          <li class="org-resp-li">Conciliar cuentas relacionadas.</li>
+          <li class="org-resp-li">Conciliar bancos.</li>
+          <li class="org-resp-li">Supervisión de registros de EF y declaraciones de impuestos.</li>
+        </ul>
+      </div>
+
+      <div class="org-resp" data-step="5">
+        <div class="org-resp-role">Analista Contable</div>
+        <div class="org-resp-name">Betzaida Itzel Muñoz</div>
+        <ul class="org-resp-list">
+          <li class="org-resp-li">Apoya todas las funciones contables junto al Contador (registro, conciliación y cierre).</li>
+          <li class="org-resp-li">Registra facturas de gastos fijos y costos de servicios en QuickBooks.</li>
+          <li class="org-resp-li">Concilia bancos, tarjetas de crédito e intercompany.</li>
+          <li class="org-resp-li">Registra caja menuda / RB de gastos fijos y PM.</li>
+          <li class="org-resp-li">Archiva los documentos contables.</li>
+        </ul>
+      </div>
+
+      <div class="org-resp" data-step="6">
+        <div class="org-resp-role">Analista Financiero</div>
+        <div class="org-resp-name">Darío Blanquicet</div>
+        <ul class="org-resp-list">
+          <li class="org-resp-li">Emitir P&amp;L de negocio con análisis de rentabilidad.</li>
+          <li class="org-resp-li">Actualizar proyecciones financieras del negocio.</li>
+          <li class="org-resp-li">Emitir análisis y reportes Ad Hoc.</li>
+        </ul>
+      </div>
+
+      <div class="org-resp" data-step="7">
+        <div class="org-resp-role">Control Financiero</div>
+        <div class="org-resp-name">Eyda Gómez</div>
+        <ul class="org-resp-list">
+          <li class="org-resp-li">Responsable de reportar las variaciones de ganancias de los proyectos de construcción.</li>
+          <li class="org-resp-li">Vigila/monitorea la ganancia de cada proyecto y las causas de su variación.</li>
+        </ul>
+      </div>
+
+      <div class="org-resp" data-step="8">
+        <div class="org-resp-role">Administrador</div>
+        <div class="org-resp-name">Liliana Vivar</div>
+        <ul class="org-resp-list">
+          <li class="org-resp-li"><strong>Responsable de</strong> orden, limpieza y servicios internos de la oficina de CL.</li>
+          <li class="org-resp-li">Cálculos de planilla de personal fijo y declaración de SIPE.</li>
+          <li class="org-resp-li">Soporte administrativo de ingreso y desincorporación de personal.</li>
+          <li class="org-resp-li">Responsable de cumplimiento.</li>
+        </ul>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ============== SLIDE 6: LA RUTA ============== -->
+  <section class="slide brecha-slide">
+    <img class="wordmark-sm-img" src="assets/construlab-logo.png" alt="ConstruLab">
+    <div class="brecha-head">
+      <div class="brecha-title">La Ruta que Recorreremos.</div>
+      <div class="brecha-intro">De lo que tenemos hoy a lo que necesitamos lograr.</div>
+    </div>
+    <div class="brecha-grid cols-3">
+      <div class="brecha-quad">
+        <div class="brecha-quad-num">1</div>
+        <div class="brecha-quad-eyebrow">Estabilizar · Q3 2026</div>
+        <div class="brecha-main">Transferencia real de responsabilidad.</div>
+        <div class="brecha-sub">La responsabilidad del team no puede ser cumplir tareas asignadas; debe haber una reorganización del personal por áreas clave y una verdadera transferencia de responsabilidades. Aplica para: Tesorería, Contabilidad y Administración.</div>
+      </div>
+      <div class="brecha-quad">
+        <div class="brecha-quad-num">2</div>
+        <div class="brecha-quad-eyebrow">Formalizar · Q4 2026</div>
+        <div class="brecha-main">Lograr la calidad de los entregables.</div>
+        <div class="brecha-sub">Estandarizar y formalizar entregables: cada área debe entregar su output con estándar de calidad — una única forma de emitirlo y de presentarlo, cumpliendo la fecha de entrega.</div>
+      </div>
+      <div class="brecha-quad">
+        <div class="brecha-quad-num">3</div>
+        <div class="brecha-quad-eyebrow">Automatizar · Q1 2027</div>
+        <div class="brecha-main">IA en cada flujo.</div>
+        <div class="brecha-sub">Sobre lo que ya funciona, usar los recursos de IA y los avances en tecnología que permitan hacer más y más rápido — agregar mayor valor. Y sobre lo que no funciona, usar la IA como herramienta de apoyo para analizar, evaluar y conseguir alternativas para que funcione mejor.</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============== SLIDE 7: REPORTES SEMANALES ============== -->
+  <section class="slide brecha-slide">
+    <img class="wordmark-sm-img" src="assets/construlab-logo.png" alt="ConstruLab">
+    <div class="brecha-head">
+      <div class="brecha-title">Entregables</div>
+      <div class="brecha-intro">Reportes semanales</div>
+    </div>
+    <div class="brecha-grid">
+      <div class="brecha-quad">
+        <div class="brecha-quad-eyebrow">Control financiero</div>
+        <div class="brecha-divider"></div>
+        <div class="brecha-main">RPG</div>
+        <div class="brecha-sub">Presupuesto, avance y margen bruto proyectado de cada proyecto de construcción, con sus versiones. </div>
+      </div>
+      <div class="brecha-quad">
+        <div class="brecha-quad-eyebrow">Tesorería</div>
+        <div class="brecha-divider"></div>
+        <div class="brecha-main">FC</div>
+        <div class="brecha-sub">Cuánto cash tenemos, cuál es la proyección de pagos (4 semanas), cuál es la estrategia de uso del cash, validar estrategia.</div>
+      </div>
+      <div class="brecha-quad">
+        <div class="brecha-quad-eyebrow">contabilidad</div>
+        <div class="brecha-divider"></div>
+        <div class="brecha-main">CRS</div>
+        <div class="brecha-sub">Neto de los activos y pasivos de la empresa, considerando lo registrado en la contabilidad, y la estimación financiera.</div>
+      </div>
+      <div class="brecha-quad">
+        <div class="brecha-quad-eyebrow">FINANZAS</div>
+        <div class="brecha-divider"></div>
+        <div class="brecha-main">Reproyecciones financieras</div>
+        <div class="brecha-sub">Recálculo de proyecciones de ganancias y cash. Tracking de facturación</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============== SLIDE 7: REPORTES MENSUALES ============== -->
+  <section class="slide brecha-slide">
+    <img class="wordmark-sm-img" src="assets/construlab-logo.png" alt="ConstruLab">
+    <div class="brecha-head">
+      <div class="brecha-title">Entregables</div>
+      <div class="brecha-intro">Reportes mensuales</div>
+    </div>
+    <div class="brecha-grid">
+      <div class="brecha-quad">
+        <div class="brecha-quad-eyebrow">Control Financiero</div>
+        <div class="brecha-divider"></div>
+        <div class="brecha-main">RPGG</div>
+        <div class="brecha-sub">Variaciones de ganancia de todos los proyectos. Corte mensual de ganancias esperadas.</div>
+      </div>
+      <div class="brecha-quad">
+        <div class="brecha-quad-eyebrow">Tesorería</div>
+        <div class="brecha-divider"></div>
+        <div class="brecha-main">Flujo de Caja</div>
+        <div class="brecha-sub">Emisión mensual del flujo de caja y proyección de cobros y pagos, con el análisis de necesidades de cash a corto, mediano y largo plazo.</div>
+      </div>
+      <div class="brecha-quad">
+        <div class="brecha-quad-eyebrow">Contabilidad</div>
+        <div class="brecha-divider"></div>
+        <div class="brecha-main">EEFF</div>
+        <div class="brecha-sub">Estados Financieros consolidados del cierre: ER, BG, CF y ECCC.</div>
+      </div>
+      <div class="brecha-quad">
+        <div class="brecha-quad-eyebrow">Finanzas</div>
+        <div class="brecha-divider"></div>
+        <div class="brecha-main">P&amp;L</div>
+        <div class="brecha-sub">Rentabilidad por línea de negocio y del negocio, real y proyectada. Se agrega el Dashboard de Proyectos con el estatus de ganancias y el cash generado y por generar de cada línea de negocio.</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============== SLIDE 8: CLOSING ============== -->
+  <section class="slide">
+    <img class="wordmark-sm-img" src="assets/construlab-logo.png" alt="ConstruLab">
+    <div class="closing-stage">
+      <div class="eyebrow-lg" style="margin-bottom:48px;">La Primera Meta</div>
+      <div class="closing-headline">Transferencia de responsabilidades, formalización y automatización de los procesos claves de la DAF</div>
+      <div class="closing-tag"><u>en 9 meses</u></div>
+    </div>
+  </section>
+
+  <!-- ============== SLIDE FINAL: VALORES + MANDATOS (recordatorio) ============== -->
+  <section class="slide valores-slide" data-cur-step="1">
+    <img class="wordmark-sm-img" src="assets/construlab-logo.png" alt="ConstruLab">
+    <div class="valores-head">
+      <div class="gap-eyebrow" style="margin-bottom:14px;">Recordatorio:</div>
+      <div class="valores-title">Nuestros Valores<span class="valores-title-extra">, y dos mandatos</span></div>
+    </div>
+    <div class="valores-stage">
+      <div class="valores-content">
+        <div class="valores-list-eyebrow">Nuestros Valores</div>
+        <div class="valor-item">
+          <div class="valor-name">Be Lean</div>
+          <div class="valor-body">Gasta solo en lo que crea valor directo. Todo lo demás es grasa: hay que arreglarlo o eliminarlo. Si no puedes atar un costo al valor que genera, ponlo en la mesa de corte.</div>
+        </div>
+        <div class="valor-item">
+          <div class="valor-name">Be Iterative</div>
+          <div class="valor-body">Equivócate rápido, equivócate seguido, equivócate hacia adelante. Si no cometes errores, no estás empujando los límites. Reconoce y comparte tus errores rápido para que toda la empresa aprenda.</div>
+        </div>
+        <div class="valor-item">
+          <div class="valor-name">Be Transparent</div>
+          <div class="valor-body">Sé honesto contigo y con los demás sobre los costos reales, las ganancias, los retos y los riesgos. Sé intelectualmente riguroso, no emocionalmente protector. Nombra tus sesgos abiertamente y trabaja en reducirlos.</div>
+        </div>
+      </div>
+      <div class="valores-vert-divider"></div>
+      <div class="mandatos-content">
+        <div class="mandatos-eyebrow">Dos Mandatos</div>
+        <div class="mandato-item">
+          <div class="mandato-name">Actúa con independencia<span class="mandato-en">(agency)</span></div>
+          <div class="mandato-body">Actúa con empoderamiento e independencia de acción y decisión. No esperes que tus jefes te definan cómo hacer las cosas. Ten la valentía de crear, experimentar y pedir perdón por hacer de más.</div>
+        </div>
+        <div class="mandato-item">
+          <div class="mandato-name">Súmate a la I.A.</div>
+          <div class="mandato-body">Ningún colaborador de la empresa debe operar sin inteligencia artificial. Es el equivalente de no saber usar WhatsApp o Chrome. Si no intentas mejorar todo lo que haces con I.A., no vas a sobrevivir.</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</div>
+
+<div class="hint" id="hint">← → para navegar  ·  F para pantalla completa</div>
+<div class="page-no" id="pageno">01 / 08</div>
+
+<button class="edit-toggle" id="edit-toggle">✎ Editar</button>
+<div class="edit-extra"><a id="export-edits">Exportar textos</a><a id="reset-edits">Restablecer textos</a></div>
+
+<script>
+(function(){
+  const slides = document.querySelectorAll('.slide');
+  const pageno = document.getElementById('pageno');
+  const hint = document.getElementById('hint');
+  let i = 0;
+
+  const pad = n => String(n).padStart(2,'0');
+
+  function positionOrgCard(slide, node, card){
+    const sr = slide.getBoundingClientRect();
+    const cw = card.offsetWidth, ch = card.offsetHeight;
+    const margin = 24, gap = 30;
+    const topMin = sr.height * 0.20;   // no tapar el título
+    let left, top;
+    if (node){
+      const nr = node.getBoundingClientRect();
+      const nLeft = nr.left - sr.left, nRight = nr.right - sr.left;
+      const nMidY = (nr.top + nr.bottom) / 2 - sr.top;
+      const nBottom = nr.bottom - sr.top;
+      if (nRight + gap + cw <= sr.width - margin){          // a la derecha
+        left = nRight + gap; top = nMidY - ch / 2;
+      } else if (nLeft - gap - cw >= margin){               // si no cabe, a la izquierda (Eyda, Liliana)
+        left = nLeft - gap - cw; top = nMidY - ch / 2;
+      } else {                                              // último recurso: debajo
+        left = nLeft; top = nBottom + gap;
+      }
+    } else {                                                // panel de inicio: centrado
+      left = sr.width / 2 - cw / 2; top = sr.height / 2 - ch / 2;
+    }
+    left = Math.min(Math.max(left, margin), sr.width - cw - margin);
+    top  = Math.min(Math.max(top, topMin), sr.height - ch - margin);
+    card.style.left = Math.round(left) + 'px';
+    card.style.top  = Math.round(top) + 'px';
+  }
+
+  function applyConstStep(slide){
+    const step = +slide.dataset.curStep || 0;
+    slide.querySelectorAll('.phrase').forEach(p => {
+      p.classList.toggle('active', +p.dataset.step === step);
+    });
+    slide.querySelectorAll('.exp-panel').forEach(p => {
+      p.classList.toggle('visible', +p.dataset.step === step);
+    });
+    // Organigrama: resalta el nodo y muestra su panel de responsabilidades
+    slide.querySelectorAll('.org-node').forEach(n => {
+      n.classList.toggle('sel', +n.dataset.step === step);
+    });
+    const chart = slide.querySelector('.org-chart');
+    if (chart) chart.classList.toggle('has-sel', step > 0);
+    slide.querySelectorAll('.org-resp').forEach(p => {
+      p.classList.toggle('visible', +p.dataset.step === step);
+    });
+    if (slide.classList.contains('org-slide')){
+      const visCard = slide.querySelector('.org-resp.visible');
+      if (visCard) positionOrgCard(slide, slide.querySelector('.org-node.sel'), visCard);
+    }
+  }
+
+  function show(n, dir){
+    if (slides[i]) {
+      slides[i].classList.remove('active', 'run');
+    }
+    i = Math.max(0, Math.min(slides.length-1, n));
+    const s = slides[i];
+    if (s.dataset.steps){
+      const total = +s.dataset.steps;
+      s.dataset.curStep = dir === 'back' ? String(total) : '0';
+      applyConstStep(s);
+    }
+    s.classList.add('active');
+    void s.offsetWidth;
+    s.classList.add('run');
+
+    pageno.textContent = pad(i+1) + ' / ' + pad(slides.length);
+    if (i > 0) hint.classList.add('hidden');
+    else hint.classList.remove('hidden');
+  }
+
+  function next(){
+    const s = slides[i];
+    if (s.dataset.steps){
+      const cur = +s.dataset.curStep || 0;
+      const total = +s.dataset.steps;
+      if (cur < total){
+        s.dataset.curStep = String(cur + 1);
+        applyConstStep(s);
+        return;
+      }
+    }
+    if (i < slides.length - 1) show(i + 1, 'fwd');
+  }
+
+  function prev(){
+    const s = slides[i];
+    if (s.dataset.steps){
+      const cur = +s.dataset.curStep || 0;
+      if (cur > 0){
+        s.dataset.curStep = String(cur - 1);
+        applyConstStep(s);
+        return;
+      }
+    }
+    if (i > 0) show(i - 1, 'back');
+  }
+
+  document.addEventListener('keydown', e => {
+    if (document.activeElement && document.activeElement.getAttribute('contenteditable') === 'true') {
+      if (e.key === 'Escape') document.activeElement.blur();
+      return;
+    }
+    if (['ArrowRight','PageDown',' ','Enter'].includes(e.key)) { e.preventDefault(); next(); }
+    else if (['ArrowLeft','PageUp','Backspace'].includes(e.key)) { e.preventDefault(); prev(); }
+    else if (e.key === 'Home') show(0, 'fwd');
+    else if (e.key === 'End') show(slides.length - 1, 'back');
+    else if (e.key === 'f' || e.key === 'F'){
+      if (!document.fullscreenElement) document.documentElement.requestFullscreen();
+      else document.exitFullscreen();
+    }
+  });
+
+  document.addEventListener('click', e => {
+    if (document.body.classList.contains('edit-mode')) return;
+    if (e.target.closest('.edit-toggle, .edit-extra')) return;
+    if (window.getSelection && window.getSelection().toString().length) return;
+    next();
+  });
+
+  show(0, 'fwd');
+
+  // Clic directo en una casilla del organigrama: selecciona y muestra sus responsabilidades
+  document.querySelectorAll('.org-node').forEach(node => {
+    node.addEventListener('click', e => {
+      if (document.body.classList.contains('edit-mode')) return;
+      const slide = node.closest('.slide');
+      if (!slide || !slide.dataset.steps) return;
+      e.stopPropagation();
+      slide.dataset.curStep = node.dataset.step;
+      applyConstStep(slide);
+    });
+  });
+
+  window.addEventListener('resize', () => {
+    const active = slides[i];
+    if (active && active.classList.contains('org-slide')){
+      const visCard = active.querySelector('.org-resp.visible');
+      if (visCard) positionOrgCard(active, active.querySelector('.org-node.sel'), visCard);
+    }
+  });
+
+  // === EDIT MODE ===
+  const EDIT_SELECTORS = [
+    '.eyebrow-lg', '.tagline-italic', '.reveal-title',
+    '.const-text .phrase', '.exp-eyebrow', '.exp-body',
+    '.closing-headline', '.closing-tag',
+    '.brecha-title', '.brecha-intro', '.brecha-quad-num', '.brecha-quad-eyebrow', '.brecha-main', '.brecha-sub',
+    '.gap-eyebrow', '.gap-intro', '.gap-col-h', '.cap-name', '.cap-hoy', '.cap-meta',
+    '.valores-title', '.valores-list-eyebrow', '.valor-name', '.valor-body',
+    '.mandatos-eyebrow', '.mandato-name', '.mandato-body',
+    '.org-title', '.org-role', '.org-name', '.org-resp-role', '.org-resp-name', '.org-resp-li'
+  ].join(', ');
+  const KEY_CLASSES = [
+    'eyebrow-lg','tagline-italic','reveal-title','phrase','exp-eyebrow','exp-body',
+    'closing-headline','closing-tag',
+    'brecha-title','brecha-intro','brecha-quad-num','brecha-quad-eyebrow','brecha-main','brecha-sub',
+    'gap-eyebrow','gap-intro','gap-col-h','cap-name','cap-hoy','cap-meta',
+    'valores-title','valores-list-eyebrow','valor-name','valor-body',
+    'mandatos-eyebrow','mandato-name','mandato-body',
+    'org-title','org-role','org-name','org-resp-role','org-resp-name','org-resp-li'
+  ];
+  function keyClassOf(el){
+    for (const c of KEY_CLASSES){ if (el.classList.contains(c)) return c; }
+    return 'unknown';
+  }
+  const editables = Array.from(document.querySelectorAll(EDIT_SELECTORS));
+  const STORE_KEY = 'ruta-finanzas-deck:';
+  // Control de version: al subir CONTENT_VERSION, se limpian las ediciones viejas
+  // del navegador para que se vea el codigo actualizado (sin Restablecer manual).
+  const CONTENT_VERSION = '2026-06-26-a';
+  if (localStorage.getItem(STORE_KEY + '__version') !== CONTENT_VERSION) {
+    Object.keys(localStorage)
+      .filter(k => k.startsWith(STORE_KEY))
+      .forEach(k => localStorage.removeItem(k));
+    localStorage.setItem(STORE_KEY + '__version', CONTENT_VERSION);
+  }
+  const classCounts = {};
+  editables.forEach((el) => {
+    const cls = keyClassOf(el);
+    const n = classCounts[cls] || 0;
+    classCounts[cls] = n + 1;
+    el.dataset.editId = cls + '-' + n;
+    const saved = localStorage.getItem(STORE_KEY + el.dataset.editId);
+    if (saved !== null) el.innerHTML = saved;
+    el.addEventListener('blur', () => {
+      if (!document.body.classList.contains('edit-mode')) return;
+      localStorage.setItem(STORE_KEY + el.dataset.editId, el.innerHTML);
+    });
+  });
+
+  const editToggle = document.getElementById('edit-toggle');
+  if (editToggle){
+    editToggle.addEventListener('click', (ev) => {
+      ev.stopPropagation();
+      const editing = document.body.classList.toggle('edit-mode');
+      editables.forEach(el => el.setAttribute('contenteditable', editing ? 'true' : 'false'));
+      editToggle.textContent = editing ? '▶ Presentar' : '✎ Editar';
+    });
+  }
+
+  const exportBtn = document.getElementById('export-edits');
+  if (exportBtn){
+    exportBtn.addEventListener('click', (ev) => {
+      ev.preventDefault(); ev.stopPropagation();
+      const dump = {};
+      document.querySelectorAll('[data-edit-id]').forEach(el => {
+        dump[el.dataset.editId] = el.innerHTML;
+      });
+      const blob = new Blob([JSON.stringify(dump, null, 2)], {type:'application/json'});
+      const a = document.createElement('a');
+      a.href = URL.createObjectURL(blob);
+      a.download = 'mis-textos.json';
+      document.body.appendChild(a); a.click(); a.remove();
+    });
+  }
+
+  const resetBtn = document.getElementById('reset-edits');
+  if (resetBtn){
+    resetBtn.addEventListener('click', (ev) => {
+      ev.preventDefault(); ev.stopPropagation();
+      if (!confirm('¿Restablecer todos los textos a la versión original?')) return;
+      Object.keys(localStorage)
+        .filter(k => k.startsWith(STORE_KEY))
+        .forEach(k => localStorage.removeItem(k));
+      location.reload();
+    });
+  }
+})();
+</script>
+</body>
+</html>
