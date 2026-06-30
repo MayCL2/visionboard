@@ -118,7 +118,7 @@
   }
 
   /* ---------- SLIDE: PROPÓSITO DEL EQUIPO (ANIMADA) ---------- */
-  .prop-slide { padding: 7vh 9vw 9vh 18vw; }
+  .prop-slide { padding: 10vh 9vw 9vh 18vw; display: flex; flex-direction: column; justify-content: flex-start; }
   .prop-head { margin-bottom: 48px; }
   .prop-grid {
     display: grid;
@@ -198,7 +198,7 @@
   .exp-body strong { font-weight: 500; color: var(--text); }
 
   /* ---------- SLIDE: EQUIPO + RESPONSABILIDADES ---------- */
-  .valores-slide { padding: 7vh 9vw 7vh 18vw; display: flex; flex-direction: column; justify-content: center; }
+  .valores-slide { padding: 10vh 9vw 7vh 18vw; display: flex; flex-direction: column; justify-content: flex-start; }
   .valores-head {
     width: calc(50% - 48px);
     margin-bottom: 40px;
@@ -438,7 +438,7 @@
   }
 
   /* === CAPABILITIES SLIDE (Hoy vs Meta Institucional) === */
-  .gap-slide { padding: 7vh 9vw 7vh 18vw; display:flex; flex-direction:column; justify-content:center; }
+  .gap-slide { padding: 10vh 9vw 7vh 18vw; display:flex; flex-direction:column; justify-content:flex-start; }
   .gap-head { margin-bottom: 34px; }
   .gap-eyebrow {
     font-family: "JetBrains Mono", monospace;
@@ -495,7 +495,7 @@
   .cap-meta { color: var(--text); }
 
   /* === ORGANIGRAMA SLIDE === */
-  .org-slide { padding: 5vh 6vw 5vh 10vw; display:flex; flex-direction:column; justify-content:center; }
+  .org-slide { padding: 10vh 6vw 5vh 10vw; display:flex; flex-direction:column; justify-content:flex-start; }
   .org-head { margin-bottom: 2.4vh; }
   .org-title {
     font-family:"Instrument Serif", Georgia, serif; font-weight:400;
@@ -592,7 +592,7 @@
   }
 
   /* === BRECHA / 4-QUADRANT (reportes + ruta) === */
-  .brecha-slide { padding: 9vh 9vw 7vh 18vw; display: flex; flex-direction: column; justify-content: flex-start; }
+  .brecha-slide { padding: 10vh 9vw 7vh 18vw; display: flex; flex-direction: column; justify-content: flex-start; }
   .brecha-head { margin-bottom: 56px; }
   .brecha-title {
     font-family: "JetBrains Mono", monospace;
@@ -847,7 +847,7 @@
   </section>
 
   <!-- ============== SLIDE 5: ORGANIGRAMA (INTERACTIVO) ============== -->
-  <section class="slide org-slide" data-steps="8" data-cur-step="0">
+  <section class="slide org-slide" data-steps="7" data-cur-step="0">
     <img class="wordmark-sm-img" src="assets/construlab-logo.png" alt="ConstruLab">
     <div class="org-head">
       <div class="gap-eyebrow">Nueva reorganización del equipo de finanzas y asignación de responsabilidades</div>
@@ -856,7 +856,7 @@
 
     <div class="org-chart">
       <div class="org-top">
-        <div class="org-node" data-step="1">
+        <div class="org-node" data-step="8">
           <div class="org-role">CFO</div>
           <div class="org-name">Mayra Alejandra Ortiz</div>
         </div>
@@ -865,45 +865,45 @@
       <div class="org-mid">
 
         <div class="org-branch">
-          <div class="org-node" data-step="2">
+          <div class="org-node" data-step="1">
             <div class="org-role">Tesorero</div>
             <div class="org-name">Mayra Esther Santos</div>
           </div>
           <div class="org-childline"></div>
-          <div class="org-node" data-step="3">
+          <div class="org-node" data-step="2">
             <div class="org-role">Asistente de Tesorería</div>
             <div class="org-name">Amarilys Pineda Ramos</div>
           </div>
         </div>
 
         <div class="org-branch">
-          <div class="org-node" data-step="4">
+          <div class="org-node" data-step="3">
             <div class="org-role">Contador</div>
-            <div class="org-name">Lilibeth De La Lastra</div>
+            <div class="org-name">Por reclutar</div>
           </div>
           <div class="org-childline"></div>
-          <div class="org-node" data-step="5">
+          <div class="org-node" data-step="4">
             <div class="org-role">Analista Contable</div>
             <div class="org-name">Betzaida Itzel Muñoz</div>
           </div>
         </div>
 
         <div class="org-branch">
-          <div class="org-node" data-step="6">
+          <div class="org-node" data-step="5">
             <div class="org-role">Analista Financiero</div>
             <div class="org-name">Darío Blanquicet</div>
           </div>
         </div>
 
         <div class="org-branch">
-          <div class="org-node" data-step="7">
+          <div class="org-node" data-step="6">
             <div class="org-role">Control Financiero</div>
             <div class="org-name">Eyda Gómez</div>
           </div>
         </div>
 
         <div class="org-branch">
-          <div class="org-node" data-step="8">
+          <div class="org-node" data-step="7">
             <div class="org-role">Administrador</div>
             <div class="org-name">Liliana Vivar</div>
           </div>
@@ -913,7 +913,7 @@
 
     <div class="org-resp-stack">
 
-      <div class="org-resp" data-step="1">
+      <div class="org-resp" data-step="8">
         <div class="org-resp-role">CFO</div>
         <div class="org-resp-name">Mayra Alejandra Ortiz</div>
         <ul class="org-resp-list">
@@ -924,7 +924,7 @@
         </ul>
       </div>
 
-      <div class="org-resp" data-step="2">
+      <div class="org-resp" data-step="1">
         <div class="org-resp-role">Tesorero</div>
         <div class="org-resp-name">Mayra Esther Santos</div>
         <ul class="org-resp-list">
@@ -937,7 +937,7 @@
         </ul>
       </div>
 
-      <div class="org-resp" data-step="3">
+      <div class="org-resp" data-step="2">
         <div class="org-resp-role">Asistente de Tesorería</div>
         <div class="org-resp-name">Amarilys Pineda Ramos</div>
         <ul class="org-resp-list">
@@ -949,9 +949,9 @@
         </ul>
       </div>
 
-      <div class="org-resp" data-step="4">
+      <div class="org-resp" data-step="3">
         <div class="org-resp-role">Contador</div>
-        <div class="org-resp-name">Lilibeth De La Lastra</div>
+        <div class="org-resp-name">Por reclutar</div>
         <ul class="org-resp-list">
           <li class="org-resp-li"><strong>Responsabilidad:</strong> Emitir buenos EEFF (estados financieros) mensuales.</li>
           <li class="org-resp-li">Liderar el cierre contable mensual.</li>
@@ -962,7 +962,7 @@
         </ul>
       </div>
 
-      <div class="org-resp" data-step="5">
+      <div class="org-resp" data-step="4">
         <div class="org-resp-role">Analista Contable</div>
         <div class="org-resp-name">Betzaida Itzel Muñoz</div>
         <ul class="org-resp-list">
@@ -974,7 +974,7 @@
         </ul>
       </div>
 
-      <div class="org-resp" data-step="6">
+      <div class="org-resp" data-step="5">
         <div class="org-resp-role">Analista Financiero</div>
         <div class="org-resp-name">Darío Blanquicet</div>
         <ul class="org-resp-list">
@@ -984,7 +984,7 @@
         </ul>
       </div>
 
-      <div class="org-resp" data-step="7">
+      <div class="org-resp" data-step="6">
         <div class="org-resp-role">Control Financiero</div>
         <div class="org-resp-name">Eyda Gómez</div>
         <ul class="org-resp-list">
@@ -993,7 +993,7 @@
         </ul>
       </div>
 
-      <div class="org-resp" data-step="8">
+      <div class="org-resp" data-step="7">
         <div class="org-resp-role">Administrador</div>
         <div class="org-resp-name">Liliana Vivar</div>
         <ul class="org-resp-list">
