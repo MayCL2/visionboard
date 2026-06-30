@@ -117,54 +117,71 @@
     margin-top: 28px;
   }
 
-  /* ---------- SLIDE 3: ANIMATED CONSTITUCIÓN ---------- */
-  .const-slide { padding: 7vh 9vw 9vh 18vw; }
-  .const-head { margin-bottom: 56px; }
-  .const-grid {
+  /* ---------- SLIDE: PROPÓSITO DEL EQUIPO (ANIMADA) ---------- */
+  .prop-slide { padding: 7vh 9vw 9vh 18vw; }
+  .prop-head { margin-bottom: 48px; }
+  .prop-grid {
     display: grid;
-    grid-template-columns: 1.05fr 1fr;
+    grid-template-columns: 0.82fr 1.18fr;
     gap: 80px;
     align-items: start;
   }
-  .const-text {
-    font-size: clamp(22px, 2.4vw, 32px);
-    transform-origin: top left;
-    transition: transform 750ms cubic-bezier(.4,0,.2,1);
+
+  /* LEFT: índice numerado (agenda) */
+  .prop-list { list-style: none; }
+  .prop-item {
+    display: flex; align-items: baseline; gap: 18px;
+    padding: 16px 0;
+    border-top: 1px solid var(--line);
+    color: var(--text-mute);
+    transition: color 450ms ease, opacity 450ms ease;
   }
-  .const-slide[data-cur-step="0"] .const-text {
-    transform: scale(1.25);
-  }
-  .const-text p {
-    font-family: "Instrument Serif", Georgia, serif; font-weight: 300;
-    line-height: 1.32; letter-spacing: -0.012em;
-  }
-  .const-text p + p { margin-top: 30px; }
-  .phrase {
-    color: var(--text);
+  .prop-item:last-child { border-bottom: 1px solid var(--line); }
+  .prop-num {
+    font-family: "JetBrains Mono", monospace;
+    font-weight: 500; font-size: clamp(13px, 1vw, 15px);
+    color: var(--text-dim);
+    min-width: 1.6em;
     transition: color 450ms ease;
   }
-  .const-slide:not([data-cur-step="0"]) .phrase { color: var(--text-mute); }
-  .const-slide .phrase.active {
-    color: var(--text);
+  .prop-label {
+    font-family: "Instrument Serif", Georgia, serif;
+    font-weight: 400;
+    font-size: clamp(21px, 2.1vw, 30px);
+    line-height: 1.2; letter-spacing: -0.012em;
+  }
+  .prop-item.done { opacity: 0.5; }
+  .prop-item.active { color: var(--text); }
+  .prop-item.active .prop-num { color: var(--accent); }
+  .prop-item.active .prop-label {
     box-shadow: inset 0 -2px 0 var(--accent);
     padding-bottom: 2px;
   }
-  .exp-stack { position: relative; min-height: 260px; }
-  .exp-panel {
+
+  /* RIGHT: para cada ítem, texto main y luego la explicación */
+  .prop-stack { position: relative; min-height: 340px; }
+  .prop-panel {
     position: absolute; inset: 0;
     opacity: 0; transform: translateY(20px);
-    transition: opacity 600ms ease, transform 600ms ease;
+    transition: opacity 550ms ease, transform 550ms ease;
     pointer-events: none;
   }
-  .exp-panel.visible { opacity: 1; transform: none; pointer-events: auto; }
-  .exp-eyebrow {
-    font-family: "JetBrains Mono", monospace;
-    font-weight: 500;
-    font-size: clamp(12px, 1vw, 15px);
-    letter-spacing: 0.18em; text-transform: uppercase;
-    color: var(--accent);
-    margin-bottom: 22px;
+  .prop-panel.visible { opacity: 1; transform: none; pointer-events: auto; }
+  .prop-main {
+    font-family: "Instrument Serif", Georgia, serif;
+    font-weight: 400;
+    font-size: clamp(26px, 2.9vw, 42px);
+    line-height: 1.2; letter-spacing: -0.015em;
+    color: var(--text);
+    max-width: 640px;
   }
+  .prop-exp {
+    margin-top: 32px;
+    opacity: 0; transform: translateY(14px);
+    transition: opacity 550ms ease, transform 550ms ease;
+  }
+  .prop-panel.show-exp .prop-exp { opacity: 1; transform: none; }
+
   .exp-divider { width: 40px; height: 1px; background: var(--accent); margin-bottom: 26px; }
   .exp-body {
     font-family: "Manrope", sans-serif;
@@ -172,7 +189,7 @@
     font-size: clamp(16px, 1.45vw, 22px);
     line-height: 1.6;
     color: var(--text);
-    max-width: 520px;
+    max-width: 560px;
   }
   .exp-body em {
     font-family: "Instrument Serif", Georgia, serif;
@@ -658,69 +675,69 @@
     </div>
   </section>
 
-  <!-- ============== SLIDE 2: NUESTRA CONSTITUCIÓN (ANIMADA) ============== -->
-  <section class="slide const-slide" data-steps="5" data-cur-step="0">
+  <!-- ============== SLIDE: PROPÓSITO DEL EQUIPO (ANIMADA) ============== -->
+  <section class="slide prop-slide" data-steps="10" data-cur-step="0">
     <img class="wordmark-sm-img" src="assets/construlab-logo.png" alt="ConstruLab">
-    <div class="const-head">
-      <div class="eyebrow-lg">La Constitución de Finanzas:</div>
+    <div class="prop-head">
+      <div class="eyebrow-lg">Propósito del Equipo</div>
     </div>
-    <div class="const-grid">
-      <!-- LEFT: full statement, each sub-phrase addressable -->
-      <div class="const-text">
-        <p>
-          <span class="phrase" data-step="1">Dar visibilidad -clara, precisa y confiable- de la salud financiera del negocio al CEO.</span>
-        </p>
-        <p>
-          <span class="phrase" data-step="2">Lo hacemos capturando información clave de cada área de la empresa  ,</span> <span class="phrase" data-step="3">y aplicando inteligencia y automatización para producir más rápido y con menos error.</span>
-        </p>
-        <p>
-          <span class="phrase" data-step="4">Nuestra meta es institucionalizar la función financiera: procesos, controles y reportes,</span> <span class="phrase" data-step="5">y lograr el grado formalidad que facilite el acceso a capital de terceros.</span>
-        </p>
-      </div>
+    <div class="prop-grid">
+      <!-- LEFT: índice numerado (agenda) -->
+      <ol class="prop-list">
+        <li class="prop-item" data-item="1"><span class="prop-num">1</span><span class="prop-label">Qué hacemos</span></li>
+        <li class="prop-item" data-item="2"><span class="prop-num">2</span><span class="prop-label">Cómo lo hacemos</span></li>
+        <li class="prop-item" data-item="3"><span class="prop-num">3</span><span class="prop-label">Cómo lo hacemos</span></li>
+        <li class="prop-item" data-item="4"><span class="prop-num">4</span><span class="prop-label">La meta: institucionalizar la DAF</span></li>
+        <li class="prop-item" data-item="5"><span class="prop-num">5</span><span class="prop-label">Nuestra contribución</span></li>
+      </ol>
 
-      <!-- RIGHT: stacked explanation panels, one per step -->
-      <div class="exp-stack">
+      <!-- RIGHT: por cada ítem, primero el texto main y luego la explicación -->
+      <div class="prop-stack">
 
-        <div class="exp-panel" data-step="1">
-          <div class="exp-eyebrow">01 · Qué hacemos:</div>
-          <div class="exp-divider"></div>
-          <div class="exp-body"><p>Producir y presentar información a Jose para que peuda tomar <span style="font-size: clamp(16px, 1.45vw, 22px);">decisiones más rápidas, con menos riesgo y con la confianza de que</span><span style="font-size: clamp(16px, 1.45vw, 22px);"> </span><em style="font-size: clamp(16px, 1.45vw, 22px);">los números hacen sentido con el negocio</em><span style="font-size: clamp(16px, 1.45vw, 22px);">. Esto es:</span></p><ul class="exp-bullets" style="font-size: 15.125px;"><li style="margin: 16px 0px 0px;"><span style="font-size: 17.545px;">RPG: Ganancias y variación de ganancia bruta de proyectos de construcción.</span></li><li><span style="font-size: 17.545px;">P&amp;L: Rentabilidad por línea de negocio y retabilidad del negocio, real y proyectada.</span></li><li><span style="font-size: 17.545px;">BS: Estado de situación patrimonial del negocio a la fecha de corte.</span></li><li><span style="font-size: clamp(16px, 1.45vw, 22px);">CF: Cuánto cash tenemos en bancos y cómo convertiremos en cash la ganancia.</span></li><li><span style="font-size: clamp(16px, 1.45vw, 22px);">Deuda: cuánto acceso a capital tenemos y su costo</span></li></ul>
-            <p><br></p>
+        <div class="prop-panel" data-item="1">
+          <div class="prop-main">Dar visibilidad —clara, precisa y confiable— de la salud financiera del negocio al CEO.</div>
+          <div class="prop-exp">
+            <div class="exp-divider"></div>
+            <div class="exp-body"><p>Producir y presentar información a Jose para que peuda tomar <span style="font-size: clamp(16px, 1.45vw, 22px);">decisiones más rápidas, con menos riesgo y con la confianza de que</span><span style="font-size: clamp(16px, 1.45vw, 22px);"> </span><em style="font-size: clamp(16px, 1.45vw, 22px);">los números hacen sentido con el negocio</em><span style="font-size: clamp(16px, 1.45vw, 22px);">. Esto es:</span></p><ul class="exp-bullets" style="font-size: 15.125px;"><li style="margin: 16px 0px 0px;"><span style="font-size: 17.545px;">RPG: Ganancias y variación de ganancia bruta de proyectos de construcción.</span></li><li><span style="font-size: 17.545px;">P&amp;L: Rentabilidad por línea de negocio y retabilidad del negocio, real y proyectada.</span></li><li><span style="font-size: 17.545px;">BS: Estado de situación patrimonial del negocio a la fecha de corte.</span></li><li><span style="font-size: clamp(16px, 1.45vw, 22px);">CF: Cuánto cash tenemos en bancos y cómo convertiremos en cash la ganancia.</span></li><li><span style="font-size: clamp(16px, 1.45vw, 22px);">Deuda: cuánto acceso a capital tenemos y su costo</span></li></ul></div>
           </div>
         </div>
 
-        <div class="exp-panel" data-step="2">
-          <div class="exp-eyebrow">02 · Cómo lo hacemos:</div>
-          <div class="exp-divider"></div>
-          <div class="exp-body"><p>No reportamos un excel, capturamos la información del negocio: qué pasó, qué está pasando y qué pronosticamos que pasará.</p><p>Los reportes deben narrar lo que está pasando en la realidad operativa del negocio y cómo eso afecta la rentabilidad de la empresa.</p>
+        <div class="prop-panel" data-item="2">
+          <div class="prop-main">Capturamos información clave de cada área de la empresa.</div>
+          <div class="prop-exp">
+            <div class="exp-divider"></div>
+            <div class="exp-body"><p>No reportamos un excel, capturamos la información del negocio: qué pasó, qué está pasando y qué pronosticamos que pasará.</p><p>Los reportes deben narrar lo que está pasando en la realidad operativa del negocio y cómo eso afecta la rentabilidad de la empresa.</p></div>
           </div>
         </div>
 
-        <div class="exp-panel" data-step="3">
-          <div class="exp-eyebrow">03 · Cómo lo hacemos:</div>
-          <div class="exp-divider"></div>
-          <div class="exp-body"><p>Las preguntas recurrentes son: Cómo podemos hacerlo mejor? cómo podemos hacelor más rápido?</p><p>Buscando respuesta a esas preguntas integramos Apps, APIs, Ai y mejora contínua de los procesos para  automatizar y lograr hacer más, mejor y más rápido el clásico trabajo operativo necesario para la captura, organización de data y emisión de reportes. </p>
+        <div class="prop-panel" data-item="3">
+          <div class="prop-main">Aplicamos inteligencia y automatización para producir más rápido y con menos error.</div>
+          <div class="prop-exp">
+            <div class="exp-divider"></div>
+            <div class="exp-body"><p>Las preguntas recurrentes son: Cómo podemos hacerlo mejor? cómo podemos hacelor más rápido?</p><p>Buscando respuesta a esas preguntas integramos Apps, APIs, Ai y mejora contínua de los procesos para  automatizar y lograr hacer más, mejor y más rápido el clásico trabajo operativo necesario para la captura, organización de data y emisión de reportes. </p></div>
           </div>
         </div>
 
-        <div class="exp-panel" data-step="4">
-          <div class="exp-eyebrow">04 · La meta: institucionalizar la DAF</div>
-          <div class="exp-divider"></div>
-          <div class="exp-body"><p>Grado institucional en finanzas significa:</p><ul class="exp-bullets"><li>Definir, formalizar y automatizar los procesos para captura de la información clave de las diferentes áreas de negocio.</li><li>Formalizar y automatizar la emisión de los reportes financieros. Es decir, emitirlos de la misma manera, con lso mismos estandares, con la misma calidad.</li>
-              <li>Presentar recurrentemente (en una misma frecuencia), a tiempo y por un único medio, la información financiera  a Jose.</li>
-            </ul>
+        <div class="prop-panel" data-item="4">
+          <div class="prop-main">Institucionalizar la función financiera: procesos, controles y reportes.</div>
+          <div class="prop-exp">
+            <div class="exp-divider"></div>
+            <div class="exp-body"><p>Grado institucional en finanzas significa:</p><ul class="exp-bullets"><li>Definir, formalizar y automatizar los procesos para captura de la información clave de las diferentes áreas de negocio.</li><li>Formalizar y automatizar la emisión de los reportes financieros. Es decir, emitirlos de la misma manera, con lso mismos estandares, con la misma calidad.</li>
+              <li>Presentar recurrentemente (en una misma frecuencia), a tiempo y por un único medio, la información financiera  a Jose.</li>
+            </ul></div>
           </div>
         </div>
 
-        <div class="exp-panel" data-step="5">
-          <div class="exp-eyebrow">05 · Nuestra contribución</div>
-          <div class="exp-divider"></div>
-          <div class="exp-body"><p>Cuando Finanzas opera a grado institucional, debe poder proveer:</p>
+        <div class="prop-panel" data-item="5">
+          <div class="prop-main">Lograr el grado de formalidad que facilite el acceso a capital de terceros.</div>
+          <div class="prop-exp">
+            <div class="exp-divider"></div>
+            <div class="exp-body"><p>Cuando Finanzas opera a grado institucional, debe poder proveer:</p>
             <ul class="exp-bullets">
               <li><strong>Al CEO</strong>, la data financiera de forma recurrente, y confianza en la data.</li>
               <li><strong>A los socios actuales</strong>, información de cómo está el retorno de su inversión en ConstruLab y las proyecciones de crecimiento del negocio.</li>
               <li><strong>Al mercado/inversionistas</strong>, Estados Financieros que expresen la solidez y formalidad de la empresa, facilitando el acceso a capital de terceros.</li>
-            </ul>
+            </ul></div>
           </div>
         </div>
 
@@ -1138,6 +1155,21 @@
     slide.querySelectorAll('.exp-panel').forEach(p => {
       p.classList.toggle('visible', +p.dataset.step === step);
     });
+    // Propósito del Equipo: 2 pasos por ítem (impar = texto main, par = + explicación)
+    if (slide.classList.contains('prop-slide')){
+      const activeItem = Math.ceil(step / 2);
+      slide.querySelectorAll('.prop-item').forEach(li => {
+        const it = +li.dataset.item;
+        li.classList.toggle('active', it === activeItem);
+        li.classList.toggle('done', it > 0 && it < activeItem);
+      });
+      slide.querySelectorAll('.prop-panel').forEach(p => {
+        const it = +p.dataset.item;
+        const isActive = it === activeItem;
+        p.classList.toggle('visible', isActive);
+        p.classList.toggle('show-exp', isActive && step % 2 === 0);
+      });
+    }
     // Organigrama: resalta el nodo y muestra su panel de responsabilidades
     slide.querySelectorAll('.org-node').forEach(n => {
       n.classList.toggle('sel', +n.dataset.step === step);
@@ -1247,7 +1279,7 @@
   // === EDIT MODE ===
   const EDIT_SELECTORS = [
     '.eyebrow-lg', '.tagline-italic', '.reveal-title',
-    '.const-text .phrase', '.exp-eyebrow', '.exp-body',
+    '.prop-label', '.prop-main', '.exp-body',
     '.closing-headline', '.closing-tag',
     '.brecha-title', '.brecha-intro', '.brecha-quad-num', '.brecha-quad-eyebrow', '.brecha-main', '.brecha-sub',
     '.gap-eyebrow', '.gap-intro', '.gap-col-h', '.cap-name', '.cap-hoy', '.cap-meta',
@@ -1256,7 +1288,7 @@
     '.org-title', '.org-role', '.org-name', '.org-resp-role', '.org-resp-name', '.org-resp-li'
   ].join(', ');
   const KEY_CLASSES = [
-    'eyebrow-lg','tagline-italic','reveal-title','phrase','exp-eyebrow','exp-body',
+    'eyebrow-lg','tagline-italic','reveal-title','prop-label','prop-main','exp-body',
     'closing-headline','closing-tag',
     'brecha-title','brecha-intro','brecha-quad-num','brecha-quad-eyebrow','brecha-main','brecha-sub',
     'gap-eyebrow','gap-intro','gap-col-h','cap-name','cap-hoy','cap-meta',
@@ -1272,7 +1304,7 @@
   const STORE_KEY = 'ruta-finanzas-deck:';
   // Control de version: al subir CONTENT_VERSION, se limpian las ediciones viejas
   // del navegador para que se vea el codigo actualizado (sin Restablecer manual).
-  const CONTENT_VERSION = '2026-06-26-a';
+  const CONTENT_VERSION = '2026-06-30-a';
   if (localStorage.getItem(STORE_KEY + '__version') !== CONTENT_VERSION) {
     Object.keys(localStorage)
       .filter(k => k.startsWith(STORE_KEY))
