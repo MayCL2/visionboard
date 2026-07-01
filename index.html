@@ -9,14 +9,14 @@
 <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&amp;family=Manrope:wght@300;400;500;600&amp;family=JetBrains+Mono:wght@400;500&amp;display=swap" rel="stylesheet">
 <style>
   :root {
-    --bg:        #0B0B0D;
-    --bg-2:      #111114;
+    --bg:        #131316;
+    --bg-2:      #1A1B1F;
     --text:      #EDEAE3;
-    --text-mute: rgba(237,234,227,0.55);
-    --text-dim:  rgba(237,234,227,0.30);
+    --text-mute: rgba(237,234,227,0.62);
+    --text-dim:  rgba(237,234,227,0.42);
     --accent:    #9E988E;
     --accent-soft: rgba(158,152,142,0.16);
-    --line:      rgba(237,234,227,0.10);
+    --line:      rgba(237,234,227,0.22);
   }
   *,*::before,*::after { box-sizing: border-box; margin: 0; padding: 0; }
   html, body { height: 100%; width: 100%; background: var(--bg); color: var(--text); overflow: hidden; }
@@ -308,7 +308,7 @@
     left: 50%;
     top: 2%; bottom: 2%;
     width: 1px;
-    background: rgba(158,152,142,0.32);
+    background: rgba(158,152,142,0.42);
     transform: translateX(-50%);
     opacity: 0;
     transition: opacity 600ms ease 250ms;
@@ -470,7 +470,7 @@
     text-transform: uppercase;
     color: var(--accent);
     padding-bottom: 8px;
-    border-bottom: 1px solid rgba(158,152,142,0.32);
+    border-bottom: 1px solid rgba(158,152,142,0.42);
   }
   .cap-name {
     font-family: "Instrument Serif", Georgia, serif;
@@ -617,11 +617,11 @@
   }
   .brecha-grid::before {
     content: ''; position: absolute; left: -8px; right: -8px; top: 50%;
-    height: 1px; background: rgba(158,152,142,0.22);
+    height: 1px; background: rgba(158,152,142,0.34);
   }
   .brecha-grid::after {
     content: ''; position: absolute; top: -8px; bottom: -8px; left: 50%;
-    width: 1px; background: rgba(158,152,142,0.22);
+    width: 1px; background: rgba(158,152,142,0.34);
   }
   .brecha-quad { position: relative; padding: 6px 0 0; }
   /* Variante 3 columnas (La Ruta con 3 fases) */
@@ -630,7 +630,7 @@
   .brecha-grid.cols-3 .brecha-quad { padding: 6px 52px; }
   .brecha-grid.cols-3 .brecha-quad:first-child { padding-left: 0; }
   .brecha-grid.cols-3 .brecha-quad:last-child { padding-right: 0; }
-  .brecha-grid.cols-3 .brecha-quad + .brecha-quad { border-left: 1px solid rgba(158,152,142,0.22); }
+  .brecha-grid.cols-3 .brecha-quad + .brecha-quad { border-left: 1px solid rgba(158,152,142,0.34); }
   .brecha-grid.cols-3 .brecha-sub { max-width: 100%; }
 
   .brecha-quad-num {
